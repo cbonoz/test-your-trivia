@@ -8,6 +8,8 @@ Test your Trivia
 A new kind of trivia Alexa game built on Kotlin and powered by the <a href="https://code.quarkus.io/" target="_blank">Quarkus</a> framework.
 
 
+
+
 ### How to use
 
 * Alexa, open test your trivia.
@@ -38,7 +40,9 @@ General
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+* Enabled rapid interation of lambda functions through quarkus instant reload without repeated redeploys
+* Prepackaged REST client enabled building a retrofit-like API out of the box.
+* AWS sdk for lambda already included through the Quarkus package.
 
 ## Running the application in dev mode
 

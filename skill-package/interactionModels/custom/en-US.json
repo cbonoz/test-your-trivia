@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "quiz game",
+      "invocationName": "test your trivia",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
@@ -26,323 +26,69 @@
         {
           "name": "AnswerIntent",
           "samples": [
-            "{StateName}",
-            "{Capital}",
-            "{StatehoodYear}",
-            "{StatehoodOrder}",
-            "{Abbreviation}",
-            "tell me about {StateName}",
-            "tell me about {Capital}",
-            "tell me about {StatehoodYear}",
-            "tell me about {StatehoodOrder}",
-            "tell me about {Abbreviation}",
-            "what do you know about {StateName}",
-            "what do you know about {Capital}",
-            "what do you know about {StatehoodYear}",
-            "what do you know about {StatehoodOrder}",
-            "what do you know about {Abbreviation}",
-            "{StateName} information",
-            "{Capital} information",
-            "{StatehoodYear} information",
-            "{StatehoodOrder} information",
-            "{Abbreviation} information"
+            "{ExampleAnswer}",
+            "Is it {Answer}",
+            "It's {Answer}",
+            "I choose option {Answer}"
           ],
           "slots": [
             {
-              "name": "StateName",
-              "type": "AMAZON.US_STATE",
-              "samples": []
+              "name": "Answer",
+              "type": "AMAZON.SearchQuery"
             },
             {
-              "name": "Capital",
-              "type": "AMAZON.US_CITY",
-              "samples": []
-            },
-            {
-              "name": "StatehoodYear",
-              "type": "AMAZON.FOUR_DIGIT_NUMBER",
-              "samples": []
-            },
-            {
-              "name": "Abbreviation",
-              "type": "US_STATE_ABBR",
-              "samples": []
-            },
-            {
-              "name": "StatehoodOrder",
-              "type": "AMAZON.NUMBER",
-              "samples": []
+              "name": "ExampleAnswer",
+              "type": "LIST_OF_EXAMPLE_ANSWERS"
             }
           ]
         },
         {
           "name": "QuizIntent",
           "samples": [
-            "start a quiz",
-            "start a quiz game",
-            "and start a quiz",
-            "and quiz me",
-            "for a quiz",
-            "a quiz"
+            "start a {difficulty} {category} quiz",
+            "start a {difficulty} {category} quiz game",
+            "and start a {difficulty} {category} quiz",
+            "for a {difficulty} {category} quiz",
+            "a {difficulty} {category} quiz"
           ],
-          "slots": []
+          "slots": [  {
+            "name": "difficulty",
+            "type": "LIST_OF_DIFFICULTIES"
+          },
+            {
+              "name": "category",
+              "type": "LIST_OF_CATEGORIES"
+            }]
         }
       ],
       "types": [
         {
-          "name": "US_STATE_ABBR",
-          "values": [
+          "name": "LIST_OF_DIFFICULTIES",
+          "values":[
             {
               "name": {
-                "value": "AK"
+                "value": "easy"
               }
             },
             {
               "name": {
-                "value": "AL"
+                "value": "medium"
               }
             },
             {
               "name": {
-                "value": "AZ"
-              }
-            },
-            {
-              "name": {
-                "value": "AR"
-              }
-            },
-            {
-              "name": {
-                "value": "CA"
-              }
-            },
-            {
-              "name": {
-                "value": "CO"
-              }
-            },
-            {
-              "name": {
-                "value": "CT"
-              }
-            },
-            {
-              "name": {
-                "value": "DE"
-              }
-            },
-            {
-              "name": {
-                "value": "FL"
-              }
-            },
-            {
-              "name": {
-                "value": "GA"
-              }
-            },
-            {
-              "name": {
-                "value": "HI"
-              }
-            },
-            {
-              "name": {
-                "value": "ID"
-              }
-            },
-            {
-              "name": {
-                "value": "IL"
-              }
-            },
-            {
-              "name": {
-                "value": "IN"
-              }
-            },
-            {
-              "name": {
-                "value": "IA"
-              }
-            },
-            {
-              "name": {
-                "value": "KS"
-              }
-            },
-            {
-              "name": {
-                "value": "KY"
-              }
-            },
-            {
-              "name": {
-                "value": "LA"
-              }
-            },
-            {
-              "name": {
-                "value": "ME"
-              }
-            },
-            {
-              "name": {
-                "value": "MD"
-              }
-            },
-            {
-              "name": {
-                "value": "MA"
-              }
-            },
-            {
-              "name": {
-                "value": "MI"
-              }
-            },
-            {
-              "name": {
-                "value": "MN"
-              }
-            },
-            {
-              "name": {
-                "value": "MS"
-              }
-            },
-            {
-              "name": {
-                "value": "MO"
-              }
-            },
-            {
-              "name": {
-                "value": "MT"
-              }
-            },
-            {
-              "name": {
-                "value": "NE"
-              }
-            },
-            {
-              "name": {
-                "value": "NV"
-              }
-            },
-            {
-              "name": {
-                "value": "NH"
-              }
-            },
-            {
-              "name": {
-                "value": "NJ"
-              }
-            },
-            {
-              "name": {
-                "value": "NM"
-              }
-            },
-            {
-              "name": {
-                "value": "NY"
-              }
-            },
-            {
-              "name": {
-                "value": "NC"
-              }
-            },
-            {
-              "name": {
-                "value": "ND"
-              }
-            },
-            {
-              "name": {
-                "value": "OH"
-              }
-            },
-            {
-              "name": {
-                "value": "OK"
-              }
-            },
-            {
-              "name": {
-                "value": "OR"
-              }
-            },
-            {
-              "name": {
-                "value": "PA"
-              }
-            },
-            {
-              "name": {
-                "value": "RI"
-              }
-            },
-            {
-              "name": {
-                "value": "SC"
-              }
-            },
-            {
-              "name": {
-                "value": "SD"
-              }
-            },
-            {
-              "name": {
-                "value": "TN"
-              }
-            },
-            {
-              "name": {
-                "value": "TX"
-              }
-            },
-            {
-              "name": {
-                "value": "UT"
-              }
-            },
-            {
-              "name": {
-                "value": "VT"
-              }
-            },
-            {
-              "name": {
-                "value": "VA"
-              }
-            },
-            {
-              "name": {
-                "value": "WA"
-              }
-            },
-            {
-              "name": {
-                "value": "WV"
-              }
-            },
-            {
-              "name": {
-                "value": "WI"
-              }
-            },
-            {
-              "name": {
-                "value": "WY"
+                "value": "hard"
               }
             }
           ]
+        },
+        {
+          "name": "LIST_OF_CATEGORIES",
+          "values":[{"name": {"value": "Art"}}, {"name": {"value": "History"}}, {"name": {"value": "Politics"}}, {"name": {"value": "Celebrities"}}, {"name": {"value": "Animal"}}, {"name": {"value": "Vehicles"}}, {"name": {"value": "Geography"}}, {"name": {"value": "Sports"}}, {"name": {"value": "Mythology"}}, {"name": {"value": "General"}}]
+        },
+        {
+          "name": "LIST_OF_EXAMPLE_ANSWERS",
+          "values":[{"name": {"value": "Polio"}}, {"name": {"value": "Cancer"}}, {"name": {"value": "Meningitis"}}, {"name": {"value": "HIV"}}, {"name": {"value": "1982"}}, {"name": {"value": "1999"}}, {"name": {"value": "1981"}}, {"name": {"value": "2005"}}, {"name": {"value": "107 BCE"}}, {"name": {"value": "42 BCE"}}, {"name": {"value": "264 BCE"}}, {"name": {"value": "102 CE"}}, {"name": {"value": "Battle of Antietam"}}, {"name": {"value": "Pearl Harbor"}}, {"name": {"value": "September 11th"}}, {"name": {"value": "D-Day"}}, {"name": {"value": "The Battle of Antietam"}}, {"name": {"value": "The Siege of Vicksburg"}}, {"name": {"value": "The Battle of Gettysburg"}}, {"name": {"value": "The Battles of Chancellorsville"}}, {"name": {"value": "Harry S. Truman"}}, {"name": {"value": "Dwight D. Eisenhower"}}, {"name": {"value": "Franklin D. Roosevelt"}}, {"name": {"value": "Herbert Hoover"}}, {"name": {"value": "Hampton Court"}}, {"name": {"value": "St James&#039;s Palace"}}, {"name": {"value": "Buckingham Palace"}}, {"name": {"value": "Coughton Court"}}, {"name": {"value": "May 9th, 1945"}}, {"name": {"value": "September 2nd, 1945"}}, {"name": {"value": "August 9th, 1945"}}, {"name": {"value": "December 11th, 1945"}}, {"name": {"value": "William McKinley"}}, {"name": {"value": "Lyndon Johnson"}}, {"name": {"value": "Chester Arthur"}}, {"name": {"value": "Franklin Roosevelt"}}, {"name": {"value": "Otto Von Bismark"}}, {"name": {"value": "Kaiser Wilhelm "}}, {"name": {"value": "Fredrick the 2nd"}}, {"name": {"value": "Robert Koch"}}]
         }
       ]
     }

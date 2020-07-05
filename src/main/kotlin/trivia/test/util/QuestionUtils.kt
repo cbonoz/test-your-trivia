@@ -16,7 +16,8 @@ object QuestionUtils {
         val sessionAttributes = input.attributesManager.sessionAttributes
         var counter = sessionAttributes[Attributes.COUNTER_KEY] as Int
         if (counter == 0) {
-            sessionAttributes[Attributes.RESPONSE_KEY] = Constants.START_QUIZ_MESSAGE + " "
+            val category = sessionAttributes.getOrDefault(Attributes.QUIZ_CATEGORY_KEY, "").toString()
+            sessionAttributes[Attributes.RESPONSE_KEY] = ResponseUtils.getStartQuizMessage(category)
         }
         counter++
         val state = randomState

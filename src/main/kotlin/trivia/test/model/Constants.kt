@@ -55,18 +55,19 @@ object Constants {
             State("Wisconsin", "WI", "Madison", "1848", "30"),
             State("Wyoming", "WY", "Cheyenne", "1890", "44")
     )
+    const val APP_NAME = "Test your Trivia"
+
     var USE_CARDS_FLAG = true
-    var WELCOME_MESSAGE = "Welcome to the United States Quiz Game!  You can ask me about any of the fifty states and their capitals, or you can ask me to start a quiz.  What would you like to do?"
-    var START_QUIZ_MESSAGE = "OK.  I will ask you 10 questions about the United States."
+    var WELCOME_MESSAGE = "Welcome to the $APP_NAME game!  You can ask me for a random quiz on one of my categories. Example, say 'I want an easy quiz on sports'."
     // This is the message a user will hear when they try to cancel or stop the
 // skill, or when they finish a quiz.
-    var EXIT_SKILL_MESSAGE = "Thank you for playing the United States Quiz Game!  Let's play again soon!"
+    var EXIT_SKILL_MESSAGE = "Thank you for playing $APP_NAME!  Let's play again soon!"
     // This is the message a user will hear after they ask (and hear) about a
 // specific data element.
     var REPROMPT_MESSAGE = "Which other state or capital would you like to know about?"
     // This is the message a user will hear when they ask Alexa for help in your
 // skill.
-    var HELP_MESSAGE = "I know lots of things about the United States.  You can ask me about a state or a capital, and I'll tell you what I know.  You can also test your knowledge by asking me to start a quiz.  What would you like to do?"
+    var HELP_MESSAGE = "I know lots of random trivia. You can ask me for a quiz on one of my categories. Example, say 'I want an easy quiz on sports'."
     var CORRECT_RESPONSES = Arrays.asList("Booya", "All righty", "Bam", "Bazinga", "Bingo", "Boom", "Bravo", "Cha Ching", "Cheers", "Dynomite",
             "Hip hip hooray", "Hurrah", "Hurray", "Huzzah", "Oh dear.  Just kidding.  Hurray", "Kaboom", "Kaching", "Oh snap", "Phew",
             "Righto", "Way to go", "Well done", "Whee", "Woo hoo", "Yay", "Wowza", "Yowsa")

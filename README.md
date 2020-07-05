@@ -1,4 +1,8 @@
-# Test your Trivia
+<p align='center'>
+	<img src="./img/test_your_trivia_trans.png" width=300/>
+</p>
+
+Test your Trivia
 ---
 
 A new kind of trivia Alexa game built on Kotlin and powered by the <a href="https://code.quarkus.io/" target="_blank">Quarkus</a> framework.

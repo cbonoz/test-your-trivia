@@ -1,11 +1,11 @@
-package trivia.test.util
+package trivia.test.model
 
 data class QuizResponse(
     val response_code: Int,
-    val results: List<Result>
+    val results: List<Question>
 )
 
-data class Result(
+data class Question(
     val category: String,
     val correct_answer: String,
     val difficulty: String,

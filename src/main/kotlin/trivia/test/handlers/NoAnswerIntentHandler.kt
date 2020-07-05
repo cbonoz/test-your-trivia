@@ -25,8 +25,8 @@ class NoAnswerIntentHandler : RequestHandler {
         return if (state!!.isPresent) {
             if (Constants.USE_CARDS_FLAG) {
                 val image = Image.builder()
-                        .withSmallImageUrl(getSmallImage(state.get()))
-                        .withSmallImageUrl(getLargeImage(state.get()))
+                        .withSmallImageUrl(getSmallCardImage())
+                        .withLargeImageUrl(getLargeCardImage())
                         .build()
                 input.responseBuilder
                         .withSpeech(getSpeechDescription(state.get()))
@@ -65,11 +65,11 @@ class NoAnswerIntentHandler : RequestHandler {
                 + state.abbreviation + "</say-as>.  I've added " + state.name + " to your Alexa app.  Which other state or capital would you like to know about?")
     }
 
-    private fun getSmallImage(state: State): String {
-        return "https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/quiz-game/state_flag/720x400/" + state.abbreviation + "._TTH_.png"
+    private fun getSmallCardImage(): String {
+        return "https://i.redd.it/3k7uvh8rz5k41.jpg"
     }
 
-    private fun getLargeImage(state: State): String {
-        return "https://m.media-amazon.com/images/G/01/mobile-apps/dex/alexa/alexa-skills-kit/tutorials/quiz-game/state_flag/1200x800/" + state.abbreviation + "._TTH_.png"
+    private fun getLargeCardImage(): String {
+        return "https://i.redd.it/3k7uvh8rz5k41.jpg"
     }
 }

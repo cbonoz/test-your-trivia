@@ -53,10 +53,12 @@ class AnswerIntentHandler : RequestHandler {
     }
 
     private fun getAnswerText(stateProperty: StateProperty, state: State): String {
-        return when (stateProperty) {
-            StateProperty.ABBREVIATION -> "The " + stateProperty.value + " of " + state.name + " is <say-as interpret-as='spell-out'>" + QuestionUtils.getPropertyOfState(stateProperty, state) + "</say-as>. "
-            else -> "The " + stateProperty.value + " of " + state.name + " is " + QuestionUtils.getPropertyOfState(stateProperty, state) + ". "
-        }
+        // TODO: Instrument to return based on the multiple choice answer from the question API response.
+//        return when (stateProperty) {
+//            StateProperty.ABBREVIATION -> "The " + stateProperty.value + " of " + state.name + " is <say-as interpret-as='spell-out'>" + QuestionUtils.getPropertyOfState(stateProperty, state) + "</say-as>. "
+//            else -> "The " + stateProperty.value + " of " + state.name + " is " + QuestionUtils.getPropertyOfState(stateProperty, state) + ". "
+//        }
+        return ""
     }
 
     private fun getSpeechCon(correct: Boolean): String {

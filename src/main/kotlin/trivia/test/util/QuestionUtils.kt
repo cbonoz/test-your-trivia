@@ -7,7 +7,8 @@ import trivia.test.model.Attributes
 import trivia.test.model.Constants
 import trivia.test.model.State
 import trivia.test.model.StateProperty
-import java.util.*
+import java.util.Optional
+import java.util.Random
 
 object QuestionUtils {
     private val RANDOM = Random()
@@ -58,9 +59,7 @@ object QuestionUtils {
             StateProperty.CAPITAL -> state.capital
             StateProperty.STATEHOOD_YEAR -> state.statehoodYear
             StateProperty.STATEHOOD_ORDER -> state.statehoodOrder
-            else -> throw IllegalStateException("Invalid stateProperty")
         }
-
     }
 
     private val randomState: State?

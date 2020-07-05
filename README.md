@@ -18,11 +18,11 @@ Supported categories:
 <pre>
 Art
 History
-politics
+Politics
 Celebrities
 Animal
 Vehicles
-Geohraphy
+Geography
 Sports
 Mythology
 General

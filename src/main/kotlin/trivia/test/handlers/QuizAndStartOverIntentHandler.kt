@@ -16,8 +16,6 @@ import javax.inject.Inject
 
 class QuizAndStartOverIntentHandler : RequestHandler {
 
-    private val logger = KotlinLogging.logger { }
-
     @Inject
     lateinit var quizService: QuizService
 

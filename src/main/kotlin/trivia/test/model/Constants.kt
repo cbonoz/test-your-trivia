@@ -58,7 +58,7 @@ object Constants {
     const val APP_NAME = "Test your Trivia"
 
     var USE_CARDS_FLAG = true
-    var WELCOME_MESSAGE = "Welcome to the $APP_NAME game!  You can ask me for a random quiz on one of my categories. Example, say 'I want an easy quiz on sports'."
+    var WELCOME_MESSAGE = "Welcome to the $APP_NAME game!  You can ask me for a random quiz on one of my categories. Example, say 'Start a easy sports quiz'."
     // This is the message a user will hear when they try to cancel or stop the
 // skill, or when they finish a quiz.
     var EXIT_SKILL_MESSAGE = "Thank you for playing $APP_NAME!  Let's play again soon!"

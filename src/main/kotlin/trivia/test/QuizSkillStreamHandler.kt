@@ -5,10 +5,8 @@ import com.amazon.ask.Skills
 import trivia.test.handlers.*
 import javax.inject.Named
 
-
 @Named("QuizHandler")
-@Suppress("UNUSED")
-class QuizSkillStreamHandler : SkillStreamHandler (
+class QuizSkillStreamHandler : SkillStreamHandler(
         Skills.standard()
                 .addRequestHandlers(
                         LaunchRequestHandler(),

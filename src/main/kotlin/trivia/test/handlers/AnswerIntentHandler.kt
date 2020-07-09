@@ -12,11 +12,13 @@ import trivia.test.model.Constants
 import trivia.test.model.State
 import trivia.test.model.StateProperty
 import trivia.test.util.QuestionUtils
-import java.util.*
+import trivia.test.util.inQuiz
+import java.util.Optional
+import java.util.Random
 
 class AnswerIntentHandler : RequestHandler {
     override fun canHandle(input: HandlerInput): Boolean {
-        return input.matches(Predicates.intentName("AnswerIntent").and(Predicates.sessionAttribute(Attributes.STATE_KEY, Attributes.QUIZ_STATE)))
+        return input.matches(Predicates.intentName("AnswerIntent").inQuiz())
     }
 
     override fun handle(input: HandlerInput): Optional<Response> {

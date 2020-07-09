@@ -10,12 +10,14 @@ import trivia.test.model.Attributes
 import trivia.test.model.Constants
 import trivia.test.model.State
 import trivia.test.util.QuestionUtils
-import java.util.*
+import trivia.test.util.notInQuiz
+import java.util.Optional
+
+private const val INTENT_TYPE = "AnswerIntent"
 
 class NoAnswerIntentHandler : RequestHandler {
-    override fun canHandle(input: HandlerInput): Boolean {
-        return input.matches(Predicates.intentName("AnswerIntent").and(Predicates.sessionAttribute(Attributes.STATE_KEY, Attributes.QUIZ_STATE).negate()))
-    }
+    override fun canHandle(input: HandlerInput): Boolean =
+        input.matches(Predicates.intentName(INTENT_TYPE).notInQuiz())
 
     override fun handle(input: HandlerInput): Optional<Response> {
         val sessionAttributes = input.attributesManager.sessionAttributes

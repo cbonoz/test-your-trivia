@@ -14,7 +14,7 @@ import trivia.test.util.notInQuiz
 import java.util.Optional
 
 private const val QUIZ_INTENT = "QuizIntent"
-private const val START_OVER_INTENT = "QuizIntent"
+private const val START_OVER_INTENT = "AMAZON.StartOverIntent"
 
 class QuizAndStartOverIntentHandler(
     private val quizService: QuizService

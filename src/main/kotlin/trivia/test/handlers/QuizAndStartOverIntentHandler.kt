@@ -6,18 +6,15 @@ import com.amazon.ask.model.IntentRequest
 import com.amazon.ask.model.Response
 import com.amazon.ask.model.ui.PlainTextOutputSpeech
 import com.amazon.ask.request.Predicates
-import mu.KotlinLogging
 import trivia.test.QuizService
 import trivia.test.model.Attributes
 import trivia.test.model.Category
 import trivia.test.model.Difficulty
 import java.util.Optional
-import javax.inject.Inject
 
-class QuizAndStartOverIntentHandler : RequestHandler {
-
-    @Inject
-    lateinit var quizService: QuizService
+class QuizAndStartOverIntentHandler(
+    private val quizService: QuizService
+) : RequestHandler {
 
     override fun canHandle(input: HandlerInput): Boolean {
         return (input.matches(Predicates.intentName("QuizIntent").and(Predicates.sessionAttribute(Attributes.STATE_KEY, Attributes.QUIZ_STATE).negate()))
@@ -50,8 +47,8 @@ class QuizAndStartOverIntentHandler : RequestHandler {
                 "hard" -> Difficulty.HARD
                 else -> Difficulty.EASY
             },
-            category = Category.SPORTS
-        ).results.first().question
+            category = Category.GENERAL_KNOWLEDGE
+        ).results.firstOrNull()?.question ?: "No questions found"
 
         return Optional.of(
             Response.builder()

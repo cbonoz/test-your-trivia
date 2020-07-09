@@ -16,6 +16,7 @@ interface QuizRepository {
     fun getQuiz(
         @QueryParam("category") category: String,
         @QueryParam("difficulty") difficulty: String,
-        @QueryParam("amount") amount: Int
+        @QueryParam("amount") amount: Int,
+        @QueryParam("type") type: String
     ): QuizResponse
 }

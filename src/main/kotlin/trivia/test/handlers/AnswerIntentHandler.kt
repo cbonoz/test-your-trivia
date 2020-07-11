@@ -31,12 +31,22 @@ class AnswerIntentHandler(
         val counter = sessionAttributes.counter
         val quizItem = sessionAttributes.quizItems[counter - 1]
         val intentRequest = input.requestEnvelope.request as IntentRequest
-        val correct = compareSlots(intentRequest.intent.slots, quizItem.correct_answer) // TODO: check incorrect answers?
-        if (correct) {
-            responseText = getSpeechCon(correct = true)
-            sessionAttributes.incrementScore()
-        } else {
-            responseText = getSpeechCon(correct = false)
+        val result = compareSlots(intentRequest.intent.slots, quizItem.allAnswers, quizItem.correct_answer)
+        when (result) {
+            AnswerResult.CORRECT -> {
+                responseText = getSpeechCon(correct = true)
+                sessionAttributes.incrementScore()
+            }
+            AnswerResult.INCORRECT -> {
+                responseText = getSpeechCon(correct = false)
+            }
+            AnswerResult.REPROMPT -> {
+                val speechOutput = "That was not a valid answer. ${questionFactory.getQuestionText(counter, quizItem)}"
+                return input.responseBuilder
+                    .withSpeech(speechOutput)
+                    .withShouldEndSession(false)
+                    .build()
+            }
         }
         responseText += getAnswerText(quizItem)
 
@@ -48,7 +58,7 @@ class AnswerIntentHandler(
             questionFactory.generateQuestion(input)
         } else {
             responseText += "Your final score is $quizScore out of $counter. "
-            speechOutput = responseText + " " + Constants.EXIT_SKILL_MESSAGE
+            speechOutput = "$responseText ${Constants.EXIT_SKILL_MESSAGE}"
             input.responseBuilder
                     .withSpeech(speechOutput)
                     .withShouldEndSession(true)
@@ -67,7 +77,19 @@ class AnswerIntentHandler(
         }
     }
 
-    private fun compareSlots(slots: Map<String, Slot>, correctAnswer: String): Boolean =
-        slots.values.mapNotNull { it.value }
-            .any { it.toLowerCase() == correctAnswer.toLowerCase() }
+    private fun compareSlots(slots: Map<String, Slot>, allAnswers: List<String>, correctAnswer: String): AnswerResult {
+        val slotValues = slots.values.mapNotNull { it.value }
+        val match = slotValues.firstOrNull { it in allAnswers } ?: return AnswerResult.REPROMPT
+        return if (match == correctAnswer) {
+            AnswerResult.CORRECT
+        } else {
+            AnswerResult.INCORRECT
+        }
+    }
+}
+
+private enum class AnswerResult {
+    CORRECT,
+    INCORRECT,
+    REPROMPT
 }

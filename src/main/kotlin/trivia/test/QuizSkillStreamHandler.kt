@@ -8,15 +8,16 @@ import javax.inject.Named
 
 @Named("QuizHandler")
 class QuizSkillStreamHandler @Inject constructor(
+        attributesProvider: SessionAttributesProvider,
         quizService: QuizService
 ) : SkillStreamHandler(
         Skills.standard()
                 .addRequestHandlers(
-                        LaunchRequestHandler(),
-                        QuizAndStartOverIntentHandler(quizService),
+                        LaunchRequestHandler,
+                        QuizAndStartOverIntentHandler(attributesProvider, quizService),
                         NoAnswerIntentHandler(),
-                        AnswerIntentHandler(),
-                        RepeatIntentHandler(),
+                        AnswerIntentHandler(attributesProvider),
+                        RepeatIntentHandler(attributesProvider),
                         HelpIntentHandler(),
                         ExitSkillHandler(),
                         SessionEndedHandler()

@@ -5,12 +5,13 @@ import com.amazon.ask.dispatcher.request.handler.RequestHandler
 import com.amazon.ask.model.IntentRequest
 import com.amazon.ask.model.Response
 import com.amazon.ask.request.Predicates
+import trivia.test.SessionAttributesProvider
 import trivia.test.QuizService
 import trivia.test.model.Category
 import trivia.test.model.Difficulty
 import trivia.test.model.QuizState
 import trivia.test.model.SessionAttributes
-import trivia.test.util.QuestionUtils
+import trivia.test.util.QuestionFactory
 import trivia.test.util.notInQuiz
 import java.util.Optional
 
@@ -18,15 +19,18 @@ private const val QUIZ_INTENT = "QuizIntent"
 private const val START_OVER_INTENT = "AMAZON.StartOverIntent"
 
 class QuizAndStartOverIntentHandler(
+    private val attributesProvider: SessionAttributesProvider,
     private val quizService: QuizService
 ) : RequestHandler {
+
+    private val questionFactory = QuestionFactory(attributesProvider)
 
     override fun canHandle(input: HandlerInput): Boolean =
         input.matches(Predicates.intentName(QUIZ_INTENT).notInQuiz())
                 || input.matches(Predicates.intentName(START_OVER_INTENT))
 
     override fun handle(input: HandlerInput): Optional<Response> {
-        val sessionAttributes = SessionAttributes(input.attributesManager.sessionAttributes)
+        val sessionAttributes = SessionAttributes(attributesProvider.get(input))
         val intentRequest = input.requestEnvelope.request as IntentRequest
 
         sessionAttributes.setState(QuizState.IN_QUIZ)
@@ -52,6 +56,6 @@ class QuizAndStartOverIntentHandler(
 
         sessionAttributes.setQuizItems(questionsResponse.results)
 
-        return QuestionUtils.generateQuestion(input)
+        return questionFactory.generateQuestion(input)
     }
 }

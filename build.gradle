@@ -21,6 +21,7 @@ dependencies {
 
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:kotlin-extensions'
+    testImplementation 'com.google.truth:truth:1.0.1'
 }
 
 group 'trivia.test'

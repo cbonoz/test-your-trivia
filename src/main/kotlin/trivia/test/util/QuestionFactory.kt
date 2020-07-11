@@ -2,13 +2,16 @@ package trivia.test.util
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput
 import com.amazon.ask.model.Response
+import trivia.test.SessionAttributesProvider
 import trivia.test.model.Question
 import trivia.test.model.SessionAttributes
 import java.util.Optional
 
-object QuestionUtils {
+class QuestionFactory(
+    private val attributesProvider: SessionAttributesProvider
+) {
     fun generateQuestion(input: HandlerInput): Optional<Response> {
-        val sessionAttributes = SessionAttributes(input.attributesManager.sessionAttributes)
+        val sessionAttributes = SessionAttributes(attributesProvider.get(input))
         val count = sessionAttributes.counter
         if (count == 0) {
             val category = sessionAttributes.category

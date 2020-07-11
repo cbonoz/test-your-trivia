@@ -6,20 +6,26 @@ import com.amazon.ask.model.IntentRequest
 import com.amazon.ask.model.Response
 import com.amazon.ask.model.Slot
 import com.amazon.ask.request.Predicates
+import trivia.test.SessionAttributesProvider
 import trivia.test.model.Constants
 import trivia.test.model.Question
 import trivia.test.model.SessionAttributes
-import trivia.test.util.QuestionUtils
+import trivia.test.util.QuestionFactory
 import trivia.test.util.inQuiz
 import java.util.Optional
 
-class AnswerIntentHandler : RequestHandler {
+class AnswerIntentHandler(
+    private val attributesProvider: SessionAttributesProvider
+) : RequestHandler {
+
+    private val questionFactory = QuestionFactory(attributesProvider)
+
     override fun canHandle(input: HandlerInput): Boolean {
         return input.matches(Predicates.intentName("AnswerIntent").inQuiz())
     }
 
     override fun handle(input: HandlerInput): Optional<Response> {
-        val sessionAttributes = SessionAttributes(input.attributesManager.sessionAttributes)
+        val sessionAttributes = SessionAttributes(attributesProvider.get(input))
         var responseText: String
         val speechOutput: String
         val counter = sessionAttributes.counter
@@ -39,7 +45,7 @@ class AnswerIntentHandler : RequestHandler {
         return if (counter < 9) {
             responseText += "Your current score is $quizScore out of $counter. "
             sessionAttributes.setResponse(responseText)
-            QuestionUtils.generateQuestion(input)
+            questionFactory.generateQuestion(input)
         } else {
             responseText += "Your final score is $quizScore out of $counter. "
             speechOutput = responseText + " " + Constants.EXIT_SKILL_MESSAGE

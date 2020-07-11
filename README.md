@@ -8,6 +8,23 @@ Test your Trivia
 A new kind of trivia Alexa game built on Kotlin and powered by the <a href="https://code.quarkus.io/" target="_blank">Quarkus</a> framework.
 
 
+### Leverages the Quarkus framework
+
+* Used for unit testing of Lambda (launch) intent handler
+* Rapid deployment to AWS using the `./build/manage.sh update` script
+* Prepackaged REST client enabled building a retrofit-like API out of the box.
+* AWS sdk for lambda already included through the Quarkus package.
+* Can be used as a starter project using Kotlin and Gradle toolchains.
+
+### Inspiration
+
+* Many Alexa quiz games exist but generally have:
+1. A fixed number of questions.
+2. Limited set of categories, or sometimes just one category, and don't leverage a dynamic question API.
+3. Don't give you control over the quiz category.
+4. Can be too long.
+5. Not open source.
+
 ### How to use
 
 You can ask for a quiz on any of the below categories. ex: Start an easy sports quiz.
@@ -51,13 +68,6 @@ cartoons
 
 Keep playing and improve your knowledge over time!
 
-### Dev Notes
-
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
-
-* Enabled rapid interation of lambda functions through quarkus instant reload without repeated redeploys
-* Prepackaged REST client enabled building a retrofit-like API out of the box.
-* AWS sdk for lambda already included through the Quarkus package.
 
 ## Running the application in dev mode
 

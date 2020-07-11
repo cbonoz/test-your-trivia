@@ -16,7 +16,7 @@ You can ask for a quiz on any of the below categories. ex: Start an easy sports 
 * Start a {easy, medium, hard} {category} quiz.
 * Ok, here's your first question. Say A,B,C or D...
 * (5 multiple choice questions)...
-* {Terrible, Good effort, Great Job, Perfect}! Your score was {X} out of 5. Play again? ex: Say, I want a easy quiz on books.
+* {Terrible, Good effort, Great Job, Perfect}! Your final score is {x} out of 5. Thank you for playing Test your Trivia! Let's play again soon!
 
 In test your trivia, you pick the category:
 

@@ -8,6 +8,7 @@ import com.amazon.ask.request.Predicates
 import trivia.test.SessionAttributesProvider
 import trivia.test.QuizService
 import trivia.test.model.Category
+import trivia.test.model.Constants.NUM_QUESTIONS
 import trivia.test.model.Difficulty
 import trivia.test.model.QuizState
 import trivia.test.model.SessionAttributes
@@ -48,7 +49,8 @@ class QuizHandlerIntent(
 
         val questionsResponse = quizService.getQuiz(
                 difficulty = apiDifficulty,
-                category = apiCategory
+                category = apiCategory,
+                amount=NUM_QUESTIONS
         )
 
         sessionAttributes.setQuizItems(questionsResponse.results)

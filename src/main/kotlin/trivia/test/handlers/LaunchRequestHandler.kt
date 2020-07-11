@@ -19,8 +19,7 @@ class LaunchRequestHandler : RequestHandler {
 
     override fun handle(input: HandlerInput): Optional<Response> {
         val sessionAttributes = SessionAttributes(input.attributesManager.sessionAttributes)
-        // TODO: add full state reset here.
-        sessionAttributes.setState(QuizState.START)
+        sessionAttributes.reset()
 
         return input.responseBuilder
                 .withSpeech(Constants.WELCOME_MESSAGE)

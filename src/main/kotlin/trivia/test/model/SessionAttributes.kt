@@ -71,6 +71,12 @@ class SessionAttributes(
     fun setDifficulty(difficulty: String) {
         attributesMap[DIFFICULTY] = difficulty
     }
+
+    fun reset() {
+        setState(QuizState.START)
+        attributesMap[QUIZ_SCORE] = 0
+        attributesMap[COUNTER] = 0
+    }
 }
 
 enum class QuizState(val attrName: String) {
@@ -80,11 +86,8 @@ enum class QuizState(val attrName: String) {
 
 object AttributeKeys {
     const val STATE = "state" // State machine current state property key.
-    const val QUIZ_CATEGORY = "quizcategory" // current category of the quiz
-    const val QUIZ_DIFFICULTY = "quizdifficulty" // current difficulty of the quiz
     const val QUIZ_ITEMS = "quizitems"
     const val QUIZ_SCORE = "quizscore"
-    const val QUIZ_PROPERTY = "quizproperty"
     const val COUNTER = "counter"
     const val RESPONSE = "response"
     const val CATEGORY = "category"

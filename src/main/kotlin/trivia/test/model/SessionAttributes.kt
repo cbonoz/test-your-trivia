@@ -49,6 +49,7 @@ class SessionAttributes(
     }
 
     fun setQuizItems(items: List<Question>) {
+        System.out.println("quiz items $items")
         attributesMap[QUIZ_ITEMS] = mapper.writeValueAsString(items)
     }
 

@@ -6,11 +6,10 @@ import com.amazon.ask.model.LaunchRequest
 import com.amazon.ask.model.Response
 import com.amazon.ask.request.Predicates
 import trivia.test.model.Constants
-import trivia.test.model.QuizState
 import trivia.test.model.SessionAttributes
 import trivia.test.util.ResponseUtils
 import trivia.test.util.requestOfType
-import java.util.Optional
+import java.util.*
 
 private const val START_OVER_INTENT = "AMAZON.StartOverIntent"
 

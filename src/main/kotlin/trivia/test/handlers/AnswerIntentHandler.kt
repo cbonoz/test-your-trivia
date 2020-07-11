@@ -31,9 +31,9 @@ class AnswerIntentHandler(
         val counter = sessionAttributes.counter
         val quizItem = sessionAttributes.quizItems[counter - 1]
         val intentRequest = input.requestEnvelope.request as IntentRequest
-        val result = compareSlots(
+        val result = checkAnswer(
                 intentRequest.intent.slots,
-                quizItem.allAnswers.map { it.toLowerCase() },
+                quizItem.allAnswers,
                 quizItem.correct_answer)
         when (result) {
             AnswerResult.CORRECT -> {
@@ -79,13 +79,17 @@ class AnswerIntentHandler(
         }
     }
 
-    private fun compareSlots(slots: Map<String, Slot>, allAnswers: List<String>, correctAnswer: String): AnswerResult {
-        val slotValues = slots.values.mapNotNull { it.value.toLowerCase() }
-        val match = slotValues.firstOrNull { it in allAnswers } ?: return AnswerResult.REPROMPT
-        return if (match == correctAnswer) {
-            AnswerResult.CORRECT
-        } else {
-            AnswerResult.INCORRECT
+    private fun checkAnswer(slots: Map<String, Slot>, allAnswers: List<String>, correctAnswer: String): AnswerResult {
+        val slotValues = slots.values.mapNotNull { it.value?.toLowerCase() }
+        val lowerCaseAnswers = allAnswers.map {it.toLowerCase()}
+        val match = slotValues.firstOrNull { it in lowerCaseAnswers }
+
+        // Compare the first matching answer slot.
+        System.out.println("answer $slotValues $match $allAnswers $correctAnswer")
+        return when (match) {
+            correctAnswer.toLowerCase() -> AnswerResult.CORRECT
+            null -> AnswerResult.REPROMPT
+            else -> AnswerResult.INCORRECT
         }
     }
 }

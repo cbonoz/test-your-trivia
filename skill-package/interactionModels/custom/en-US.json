@@ -16,6 +16,10 @@
           "samples": []
         },
         {
+          "name": "AMAZON.RepeatIntent",
+          "samples": []
+        },
+        {
           "name": "AMAZON.StartOverIntent",
           "samples": []
         },
@@ -53,7 +57,7 @@
             "Give me an {difficulty} {category} quiz",
             "start a {difficulty} quiz on {category}",
             "start a {difficulty} {category} quiz game",
-            "start a {difficulty} quiz game on {category",
+            "start a {difficulty} quiz game on {category}",
             "and start a {difficulty} {category} quiz",
             "and start a {difficulty} quiz on {category}",
             "for a {difficulty} {category} quiz",

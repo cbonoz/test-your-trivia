@@ -38,7 +38,7 @@ class QuizSkillStreamHandlerTest {
     @Test
     fun `launch can handle LaunchRequests`() {
         assertThat(
-            LaunchRequestHandler.canHandle(
+            LaunchRequestHandler().canHandle(
                 HandlerInput.builder()
                     .withRequestEnvelope(
                         RequestEnvelope.builder()

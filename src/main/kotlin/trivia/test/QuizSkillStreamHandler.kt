@@ -13,14 +13,13 @@ class QuizSkillStreamHandler @Inject constructor(
 ) : SkillStreamHandler(
         Skills.standard()
                 .addRequestHandlers(
-                        LaunchRequestHandler,
+                        LaunchRequestHandler(),
                         QuizAndStartOverIntentHandler(attributesProvider, quizService),
-                        NoAnswerIntentHandler(),
-                        AnswerIntentHandler(attributesProvider),
                         RepeatIntentHandler(attributesProvider),
-                        HelpIntentHandler(),
                         ExitSkillHandler(),
+                        HelpIntentHandler(),
+                        AnswerIntentHandler(attributesProvider),
                         SessionEndedHandler()
                 )
-        .build()
+                .build()
 )

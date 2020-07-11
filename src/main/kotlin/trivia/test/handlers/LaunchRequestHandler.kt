@@ -10,7 +10,7 @@ import trivia.test.model.SessionAttributes
 import trivia.test.util.requestOfType
 import java.util.Optional
 
-object LaunchRequestHandler : RequestHandler {
+class LaunchRequestHandler : RequestHandler {
     override fun canHandle(input: HandlerInput): Boolean =
         input.matches(requestOfType<LaunchRequest>())
 

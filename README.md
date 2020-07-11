@@ -22,16 +22,30 @@ In test your trivia, you pick the category:
 
 Supported categories:
 <pre>
-Art
-History
-Politics
-Celebrities
-Animal
-Vehicles
-Geography
-Sports
-Mythology
-General
+general knowledge
+books
+film
+music
+musicals
+television
+video games
+board games
+science
+computers
+math
+mythology
+sports
+geography
+history
+politics
+art
+celebrities
+animals
+vehicles
+comics
+gadgets
+anime
+cartoons
 </pre>
 <!--more supported, can be listed later. Pulled from https://opentdb.com/api_config.php -->
 

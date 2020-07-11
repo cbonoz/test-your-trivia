@@ -8,6 +8,7 @@ import com.amazon.ask.request.Predicates
 import trivia.test.model.Constants
 import trivia.test.model.QuizState
 import trivia.test.model.SessionAttributes
+import trivia.test.util.ResponseUtils
 import trivia.test.util.requestOfType
 import java.util.Optional
 
@@ -21,8 +22,11 @@ class LaunchRequestHandler : RequestHandler {
         val sessionAttributes = SessionAttributes(input.attributesManager.sessionAttributes)
         sessionAttributes.reset()
 
+        val exampleQuiz = ResponseUtils.getExampleQuizMessage()
+        val welcomeMessage = "${Constants.WELCOME_MESSAGE} $exampleQuiz"
+
         return input.responseBuilder
-                .withSpeech(Constants.WELCOME_MESSAGE)
+                .withSpeech(welcomeMessage)
                 .withReprompt(Constants.HELP_MESSAGE)
                 .withShouldEndSession(false)
                 .build()

@@ -32,5 +32,5 @@ class QuestionFactory(
     }
 
     fun getQuestionText(counter: Int, item: Question): String =
-        "Here is question number " + counter + ". ${item.question}"
+        "Here is question number $counter. ${item.question} Possible answers are ${item.allAnswers.joinToString(". ")}"
 }

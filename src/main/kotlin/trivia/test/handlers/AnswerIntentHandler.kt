@@ -31,7 +31,7 @@ class AnswerIntentHandler(
         val counter = sessionAttributes.counter
         val quizItem = sessionAttributes.quizItems[counter - 1]
         val intentRequest = input.requestEnvelope.request as IntentRequest
-        val correct = compareSlots(intentRequest.intent.slots, quizItem.correct_answer)
+        val correct = compareSlots(intentRequest.intent.slots, quizItem.correct_answer) // TODO: check incorrect answers?
         if (correct) {
             responseText = getSpeechCon(correct = true)
             sessionAttributes.incrementScore()

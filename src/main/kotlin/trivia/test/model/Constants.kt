@@ -55,6 +55,8 @@ object Constants {
     )
     private const val APP_NAME = "Test your Trivia"
 
+    val NUM_QUESTIONS = 5
+
     var USE_CARDS_FLAG = true
     var WELCOME_MESSAGE = "Welcome to the $APP_NAME game!  You can ask me for a random quiz in any of my categories. For example, say 'Start an easy sports quiz'."
     // This is the message a user will hear when they try to cancel or stop the

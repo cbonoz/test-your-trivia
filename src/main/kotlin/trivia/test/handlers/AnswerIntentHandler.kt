@@ -8,6 +8,7 @@ import com.amazon.ask.model.Slot
 import com.amazon.ask.request.Predicates
 import trivia.test.SessionAttributesProvider
 import trivia.test.model.Constants
+import trivia.test.model.Constants.NUM_QUESTIONS
 import trivia.test.model.Question
 import trivia.test.model.SessionAttributes
 import trivia.test.util.QuestionFactory
@@ -41,7 +42,7 @@ class AnswerIntentHandler(
 
         val quizScore = sessionAttributes.score
 
-        return if (counter < 10) {
+        return if (counter < NUM_QUESTIONS) {
             responseText += "Your current score is $quizScore out of $counter. "
             sessionAttributes.setResponse(responseText)
             questionFactory.generateQuestion(input)
@@ -56,7 +57,7 @@ class AnswerIntentHandler(
     }
 
     private fun getAnswerText(question: Question): String =
-        "The correct answer is ${question.correct_answer}"
+        "The correct answer is ${question.correct_answer}. "
 
     private fun getSpeechCon(correct: Boolean): String {
         return if (correct) {

@@ -15,8 +15,8 @@ A new kind of trivia Alexa game built on Kotlin and powered by the <a href="http
 * Alexa, open test your trivia.
 * I want an {easy, medium, hard} quiz on {category}.
 * Ok, here's your first question. Say A,B,C or D...
-* (10 multiple choice questions)...
-* {Terrible, Good effort, Great Job, Perfect}! Your score was {X} out of 10. Play again? ex: Say, I want a easy quiz on books.
+* (5 multiple choice questions)...
+* {Terrible, Good effort, Great Job, Perfect}! Your score was {X} out of 5. Play again? ex: Say, I want a easy quiz on books.
 
 In test your trivia, you pick the category:
 

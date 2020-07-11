@@ -1,15 +1,14 @@
 package trivia.test.model
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+
 data class QuizResponse(
     val response_code: Int,
     val results: List<Question>
 )
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class Question(
-    val category: String,
     val correct_answer: String,
-    val difficulty: String,
-    val incorrect_answers: List<String>,
-    val question: String,
-    val type: String
+    val question: String
 )

@@ -17,6 +17,7 @@ dependencies {
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-resteasy'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.11.1'
 
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:kotlin-extensions'

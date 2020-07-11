@@ -27,8 +27,8 @@ enum class Category(val text: String, val apiCode: Int) {
     CARTOONS("cartoons", 32);
 
     companion object {
-        fun fromText(text: String): Category? =
-            values().firstOrNull { it.text == text.toLowerCase() }
+        fun fromText(text: String): Category =
+            values().first { it.text == text.toLowerCase() }
 
         fun allCategoriesText(): String =
             values().joinToString { it.text }

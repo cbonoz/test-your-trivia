@@ -4,12 +4,13 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput
 import com.amazon.ask.dispatcher.request.handler.RequestHandler
 import com.amazon.ask.model.IntentRequest
 import com.amazon.ask.model.Response
-import com.amazon.ask.model.ui.PlainTextOutputSpeech
 import com.amazon.ask.request.Predicates
 import trivia.test.QuizService
-import trivia.test.model.Attributes
 import trivia.test.model.Category
 import trivia.test.model.Difficulty
+import trivia.test.model.QuizState
+import trivia.test.model.SessionAttributes
+import trivia.test.util.QuestionUtils
 import trivia.test.util.notInQuiz
 import java.util.Optional
 
@@ -25,43 +26,32 @@ class QuizAndStartOverIntentHandler(
                 || input.matches(Predicates.intentName(START_OVER_INTENT))
 
     override fun handle(input: HandlerInput): Optional<Response> {
-        val sessionAttributes = input.attributesManager.sessionAttributes
+        val sessionAttributes = SessionAttributes(input.attributesManager.sessionAttributes)
         val intentRequest = input.requestEnvelope.request as IntentRequest
-        sessionAttributes[Attributes.STATE_KEY] = Attributes.QUIZ_STATE
 
-        val difficulty = intentRequest.intent.slots["difficulty"]?.also {
-            sessionAttributes[Attributes.QUIZ_DIFFICULTY_KEY] = it
-        }
+        sessionAttributes.setState(QuizState.IN_QUIZ)
 
-        val category = intentRequest.intent.slots["category"]?.also {
-            sessionAttributes[Attributes.QUIZ_CATEGORY_KEY] = it
-        }
+        val intentDifficulty = intentRequest.intent.slots["difficulty"]?.value ?: Difficulty.EASY.name
+        val intentCategory = intentRequest.intent.slots["category"]?.value ?: Category.GENERAL_KNOWLEDGE.text
 
-        sessionAttributes[Attributes.RESPONSE_KEY] = ""
-        sessionAttributes[Attributes.COUNTER_KEY] = 0
-        sessionAttributes[Attributes.QUIZ_SCORE_KEY] = 0
+        sessionAttributes.setDifficulty(intentDifficulty)
+        sessionAttributes.setCategory(intentCategory)
 
-        val apiDifficulty = when (difficulty?.value) {
+        val apiDifficulty = when (intentDifficulty) {
             "easy" -> Difficulty.EASY
             "medium" -> Difficulty.MEDIUM
             "hard" -> Difficulty.HARD
             else -> Difficulty.EASY
         }
-        val apiCategory = category?.let { Category.fromText(it.value) } ?: Category.GENERAL_KNOWLEDGE
+        val apiCategory = Category.fromText(intentCategory)
 
-        val question = quizService.getQuiz(
+        val questionsResponse = quizService.getQuiz(
             difficulty = apiDifficulty,
             category = apiCategory
-        ).results.firstOrNull()?.question ?: "No questions found"
-
-        return Optional.of(
-            Response.builder()
-                .withOutputSpeech(
-                    PlainTextOutputSpeech.builder()
-                        .withText(question)
-                        .build()
-                )
-                .build()
         )
+
+        sessionAttributes.setQuizItems(questionsResponse.results)
+
+        return QuestionUtils.generateQuestion(input)
     }
 }

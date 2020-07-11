@@ -1,9 +1,7 @@
 package trivia.test.model
 
-import java.util.*
-
 object Constants {
-    val STATES = Arrays.asList(
+    val STATES = listOf(
             State("Alabama", "AL", "Montgomery", "1819", "22"),
             State("Alaska", "AK", "Juneau", "1959", "49"),
             State("Arizona", "AZ", "Phoenix", "1912", "48"),
@@ -55,22 +53,20 @@ object Constants {
             State("Wisconsin", "WI", "Madison", "1848", "30"),
             State("Wyoming", "WY", "Cheyenne", "1890", "44")
     )
-    const val APP_NAME = "Test your Trivia"
+    private const val APP_NAME = "Test your Trivia"
 
     var USE_CARDS_FLAG = true
-    var WELCOME_MESSAGE = "Welcome to the $APP_NAME game!  You can ask me for a random quiz on one of my categories. Example, say 'Start a easy sports quiz'."
+    var WELCOME_MESSAGE = "Welcome to the $APP_NAME game!  You can ask me for a random quiz in any of my categories. For example, say 'Start an easy sports quiz'."
     // This is the message a user will hear when they try to cancel or stop the
 // skill, or when they finish a quiz.
     var EXIT_SKILL_MESSAGE = "Thank you for playing $APP_NAME!  Let's play again soon!"
     // This is the message a user will hear after they ask (and hear) about a
 // specific data element.
     var REPROMPT_MESSAGE = "Which other state or capital would you like to know about?"
-    // This is the message a user will hear when they ask Alexa for help in your
-// skill.
-    var HELP_MESSAGE = "I know lots of random trivia. You can ask me for a quiz on one of my categories. Example, say 'I want an easy quiz on sports'."
-    var CORRECT_RESPONSES = Arrays.asList("Booya", "All righty", "Bam", "Bazinga", "Bingo", "Boom", "Bravo", "Cha Ching", "Cheers", "Dynomite",
+    val HELP_MESSAGE = "You can ask me for an easy, medium, or difficult quiz in any of the following categories: ${Category.allCategoriesText()}. For example, say 'I want an easy quiz on sports'."
+    val CORRECT_RESPONSES = listOf("Booya", "All righty", "Bam", "Bazinga", "Bingo", "Boom", "Bravo", "Cha Ching", "Cheers", "Dynomite",
             "Hip hip hooray", "Hurrah", "Hurray", "Huzzah", "Oh dear.  Just kidding.  Hurray", "Kaboom", "Kaching", "Oh snap", "Phew",
             "Righto", "Way to go", "Well done", "Whee", "Woo hoo", "Yay", "Wowza", "Yowsa")
-    var INCORRECT_RESPONSES = Arrays.asList("Argh", "Aw man", "Blarg", "Blast", "Boo", "Bummer", "Darn", "D'oh", "Dun dun dun", "Eek", "Honk", "Le sigh",
+    val INCORRECT_RESPONSES = listOf("Argh", "Aw man", "Blarg", "Blast", "Boo", "Bummer", "Darn", "D'oh", "Dun dun dun", "Eek", "Honk", "Le sigh",
             "Mamma mia", "Oh boy", "Oh dear", "Oof", "Ouch", "Ruh roh", "Shucks", "Uh oh", "Wah wah", "Whoops a daisy", "Yikes")
 }

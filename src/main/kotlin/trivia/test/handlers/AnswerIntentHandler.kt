@@ -16,13 +16,13 @@ import trivia.test.util.inQuiz
 import java.util.Optional
 
 class AnswerIntentHandler(
-    private val attributesProvider: SessionAttributesProvider
+        private val attributesProvider: SessionAttributesProvider
 ) : RequestHandler {
 
     private val questionFactory = QuestionFactory(attributesProvider)
 
     override fun canHandle(input: HandlerInput): Boolean =
-        input.matches(Predicates.intentName("AnswerIntent").inQuiz())
+            input.matches(Predicates.intentName("AnswerIntent").inQuiz())
 
     override fun handle(input: HandlerInput): Optional<Response> {
         val sessionAttributes = SessionAttributes(attributesProvider.get(input))
@@ -31,7 +31,10 @@ class AnswerIntentHandler(
         val counter = sessionAttributes.counter
         val quizItem = sessionAttributes.quizItems[counter - 1]
         val intentRequest = input.requestEnvelope.request as IntentRequest
-        val result = compareSlots(intentRequest.intent.slots, quizItem.allAnswers, quizItem.correct_answer)
+        val result = compareSlots(
+                intentRequest.intent.slots,
+                quizItem.allAnswers.map { it.toLowerCase() },
+                quizItem.correct_answer)
         when (result) {
             AnswerResult.CORRECT -> {
                 responseText = getSpeechCon(correct = true)
@@ -41,11 +44,11 @@ class AnswerIntentHandler(
                 responseText = getSpeechCon(correct = false)
             }
             AnswerResult.REPROMPT -> {
-                val speechOutput = "That was not a valid answer. ${questionFactory.getQuestionText(counter, quizItem)}"
+                speechOutput = "That was not a valid answer. ${questionFactory.getQuestionText(counter, quizItem)}"
                 return input.responseBuilder
-                    .withSpeech(speechOutput)
-                    .withShouldEndSession(false)
-                    .build()
+                        .withSpeech(speechOutput)
+                        .withShouldEndSession(false)
+                        .build()
             }
         }
         responseText += getAnswerText(quizItem)
@@ -66,8 +69,7 @@ class AnswerIntentHandler(
         }
     }
 
-    private fun getAnswerText(question: Question): String =
-        "The correct answer is ${question.correct_answer}. "
+    private fun getAnswerText(question: Question): String = "The correct answer is ${question.correct_answer}. "
 
     private fun getSpeechCon(correct: Boolean): String {
         return if (correct) {
@@ -78,7 +80,7 @@ class AnswerIntentHandler(
     }
 
     private fun compareSlots(slots: Map<String, Slot>, allAnswers: List<String>, correctAnswer: String): AnswerResult {
-        val slotValues = slots.values.mapNotNull { it.value }
+        val slotValues = slots.values.mapNotNull { it.value.toLowerCase() }
         val match = slotValues.firstOrNull { it in allAnswers } ?: return AnswerResult.REPROMPT
         return if (match == correctAnswer) {
             AnswerResult.CORRECT

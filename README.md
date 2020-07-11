@@ -1,5 +1,5 @@
 <p align='center'>
-	<img src="./img/test_your_trivia_trans.png" width=300/>
+	<img src="./img/test_your_trivia_512.png" width=300/>
 </p>
 
 Test your Trivia
@@ -8,12 +8,12 @@ Test your Trivia
 A new kind of trivia Alexa game built on Kotlin and powered by the <a href="https://code.quarkus.io/" target="_blank">Quarkus</a> framework.
 
 
-
-
 ### How to use
 
+You can ask for a quiz on any of the below categories. ex: Start an easy sports quiz.
+
 * Alexa, open test your trivia.
-* I want an {easy, medium, hard} quiz on {category}.
+* Start a {easy, medium, hard} {category} quiz.
 * Ok, here's your first question. Say A,B,C or D...
 * (5 multiple choice questions)...
 * {Terrible, Good effort, Great Job, Perfect}! Your score was {X} out of 5. Play again? ex: Say, I want a easy quiz on books.
@@ -49,6 +49,7 @@ cartoons
 </pre>
 <!--more supported, can be listed later. Pulled from https://opentdb.com/api_config.php -->
 
+Keep playing and improve your knowledge over time!
 
 ### Dev Notes
 

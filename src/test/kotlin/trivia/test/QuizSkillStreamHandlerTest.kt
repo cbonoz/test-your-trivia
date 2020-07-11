@@ -11,13 +11,17 @@ import io.quarkus.test.junit.QuarkusTest
 import org.junit.jupiter.api.Test
 import trivia.test.handlers.LaunchRequestHandler
 import trivia.test.handlers.QuizAndStartOverIntentHandler
+import trivia.test.model.Category
+import trivia.test.model.QuizState
+import trivia.test.model.SessionAttributes
 import java.util.Optional
 import javax.inject.Inject
 
 @QuarkusTest
 class QuizSkillStreamHandlerTest {
 
-    private val sessionAttributes = mutableMapOf<String, Any>()
+    private val attributesMap = mutableMapOf<String, Any>()
+    private val sessionAttributes = SessionAttributes(attributesMap)
 
     @Inject
     lateinit var quizService: QuizService
@@ -25,7 +29,7 @@ class QuizSkillStreamHandlerTest {
     private val quizAndStartOverIntentHandler by lazy {
         QuizAndStartOverIntentHandler(
             attributesProvider = object : SessionAttributesProvider {
-                override fun get(input: HandlerInput): MutableMap<String, Any> = sessionAttributes
+                override fun get(input: HandlerInput): MutableMap<String, Any> = attributesMap
             },
             quizService = quizService
         )
@@ -67,5 +71,10 @@ class QuizSkillStreamHandlerTest {
                     .build()
             )
         ).isNotEqualTo(Optional.empty<Response>())
+
+        assertThat(sessionAttributes.state).isEqualTo(QuizState.IN_QUIZ)
+        assertThat(sessionAttributes.category).isEqualTo(Category.GENERAL_KNOWLEDGE)
+        assertThat(sessionAttributes.quizItems).hasSize(10)
+        assertThat(sessionAttributes.counter).isEqualTo(1)
     }
 }

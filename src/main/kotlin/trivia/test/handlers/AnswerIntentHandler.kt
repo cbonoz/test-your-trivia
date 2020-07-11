@@ -20,9 +20,8 @@ class AnswerIntentHandler(
 
     private val questionFactory = QuestionFactory(attributesProvider)
 
-    override fun canHandle(input: HandlerInput): Boolean {
-        return input.matches(Predicates.intentName("AnswerIntent").inQuiz())
-    }
+    override fun canHandle(input: HandlerInput): Boolean =
+        input.matches(Predicates.intentName("AnswerIntent").inQuiz())
 
     override fun handle(input: HandlerInput): Optional<Response> {
         val sessionAttributes = SessionAttributes(attributesProvider.get(input))
@@ -42,7 +41,7 @@ class AnswerIntentHandler(
 
         val quizScore = sessionAttributes.score
 
-        return if (counter < 9) {
+        return if (counter < 10) {
             responseText += "Your current score is $quizScore out of $counter. "
             sessionAttributes.setResponse(responseText)
             questionFactory.generateQuestion(input)

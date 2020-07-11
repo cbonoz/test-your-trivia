@@ -16,18 +16,15 @@ import trivia.test.util.notInQuiz
 import java.util.Optional
 
 private const val QUIZ_INTENT = "QuizIntent"
-private const val START_OVER_INTENT = "AMAZON.StartOverIntent"
 
-class QuizAndStartOverIntentHandler(
-    private val attributesProvider: SessionAttributesProvider,
-    private val quizService: QuizService
+class QuizHandlerIntent(
+        private val attributesProvider: SessionAttributesProvider,
+        private val quizService: QuizService
 ) : RequestHandler {
 
     private val questionFactory = QuestionFactory(attributesProvider)
 
-    override fun canHandle(input: HandlerInput): Boolean =
-        input.matches(Predicates.intentName(QUIZ_INTENT).notInQuiz())
-                || input.matches(Predicates.intentName(START_OVER_INTENT))
+    override fun canHandle(input: HandlerInput): Boolean = input.matches(Predicates.intentName(QUIZ_INTENT).notInQuiz())
 
     override fun handle(input: HandlerInput): Optional<Response> {
         val sessionAttributes = SessionAttributes(attributesProvider.get(input))
@@ -50,8 +47,8 @@ class QuizAndStartOverIntentHandler(
         val apiCategory = Category.fromText(intentCategory)
 
         val questionsResponse = quizService.getQuiz(
-            difficulty = apiDifficulty,
-            category = apiCategory
+                difficulty = apiDifficulty,
+                category = apiCategory
         )
 
         sessionAttributes.setQuizItems(questionsResponse.results)

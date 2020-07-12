@@ -14,6 +14,7 @@ A new kind of trivia Alexa game built on Kotlin and powered by the <a href="http
 * Rapid deployment to AWS using the `./build/manage.sh update` script
 * Prepackaged REST client enabled building a retrofit-like API out of the box.
 * AWS sdk for lambda already included through the Quarkus package.
+* Quarkus unit testing for main launch handler
 * Can be used as a starter project using Kotlin and Gradle toolchains.
 
 ### Inspiration

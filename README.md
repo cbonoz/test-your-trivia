@@ -17,6 +17,14 @@ A new kind of trivia Alexa game built on Kotlin and powered by the <a href="http
 * Quarkus unit testing for main launch handler
 * Can be used as a starter project using Kotlin and Gradle toolchains.
 
+<h5>Kits used:</h5>
+<pre>
+    'io.quarkus:quarkus-kotlin'
+    'io.quarkus:quarkus-amazon-alexa'
+    'io.quarkus:quarkus-rest-client-jackson'
+    'io.quarkus:quarkus-amazon-lambda'
+    'io.quarkus:quarkus-resteasy'
+</pre>
 ### Inspiration
 
 * Many Alexa quiz games exist but generally have:

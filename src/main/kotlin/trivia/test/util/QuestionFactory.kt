@@ -22,7 +22,7 @@ class QuestionFactory(
         val question = getQuestionText(count + 1, items[count])
         val speech = sessionAttributes.response + question
 
-        sessionAttributes.incrementCounter() // TODO: probably not the place for this
+        sessionAttributes.incrementCounter()
 
         return input.responseBuilder
                 .withSpeech(speech)

@@ -47,6 +47,14 @@
           ]
         },
         {
+          "name": "SkipQuestionIntent",
+          "samples": [
+            "Skip question",
+            "Skip this question",
+            "Next question"
+          ]
+        },
+        {
           "name": "QuizIntent",
           "samples": [
             "start a {difficulty} {category} quiz",

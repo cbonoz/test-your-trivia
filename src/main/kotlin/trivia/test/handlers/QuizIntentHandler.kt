@@ -18,9 +18,9 @@ import java.util.Optional
 
 private const val QUIZ_INTENT = "QuizIntent"
 
-class QuizHandlerIntent(
-        private val attributesProvider: SessionAttributesProvider,
-        private val quizService: QuizService
+class QuizIntentHandler(
+    private val attributesProvider: SessionAttributesProvider,
+    private val quizService: QuizService
 ) : RequestHandler {
 
     private val questionFactory = QuestionFactory(attributesProvider)
@@ -48,9 +48,9 @@ class QuizHandlerIntent(
         val apiCategory = Category.fromText(intentCategory)
 
         val questionsResponse = quizService.getQuiz(
-                difficulty = apiDifficulty,
-                category = apiCategory,
-                amount=NUM_QUESTIONS
+            difficulty = apiDifficulty,
+            category = apiCategory,
+            amount = NUM_QUESTIONS
         )
 
         sessionAttributes.setQuizItems(questionsResponse.results)

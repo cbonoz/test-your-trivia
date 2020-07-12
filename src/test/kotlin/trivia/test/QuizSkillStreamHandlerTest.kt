@@ -10,7 +10,7 @@ import com.google.common.truth.Truth.assertThat
 import io.quarkus.test.junit.QuarkusTest
 import org.junit.jupiter.api.Test
 import trivia.test.handlers.LaunchRequestHandler
-import trivia.test.handlers.QuizHandlerIntent
+import trivia.test.handlers.QuizIntentHandler
 import trivia.test.model.Category
 import trivia.test.model.QuizState
 import trivia.test.model.SessionAttributes
@@ -27,7 +27,7 @@ class QuizSkillStreamHandlerTest {
     lateinit var quizService: QuizService
 
     private val quizAndStartOverIntentHandler by lazy {
-        QuizHandlerIntent(
+        QuizIntentHandler(
             attributesProvider = object : SessionAttributesProvider {
                 override fun get(input: HandlerInput): MutableMap<String, Any> = attributesMap
             },

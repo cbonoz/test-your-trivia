@@ -16,13 +16,13 @@ import trivia.test.util.inQuiz
 import java.util.Optional
 
 class AnswerIntentHandler(
-        private val attributesProvider: SessionAttributesProvider
+    private val attributesProvider: SessionAttributesProvider
 ) : RequestHandler {
 
     private val questionFactory = QuestionFactory(attributesProvider)
 
     override fun canHandle(input: HandlerInput): Boolean =
-            input.matches(Predicates.intentName("AnswerIntent").inQuiz())
+        input.matches(Predicates.intentName("AnswerIntent").inQuiz())
 
     override fun handle(input: HandlerInput): Optional<Response> {
         val sessionAttributes = SessionAttributes(attributesProvider.get(input))
@@ -32,9 +32,10 @@ class AnswerIntentHandler(
         val quizItem = sessionAttributes.quizItems[counter - 1]
         val intentRequest = input.requestEnvelope.request as IntentRequest
         val result = checkAnswer(
-                intentRequest.intent.slots,
-                quizItem.allAnswers,
-                quizItem.correct_answer)
+            intentRequest.intent.slots,
+            quizItem.allAnswers,
+            quizItem.correct_answer
+        )
         when (result) {
             AnswerResult.CORRECT -> {
                 responseText = getSpeechCon(correct = true)
@@ -46,9 +47,9 @@ class AnswerIntentHandler(
             AnswerResult.REPROMPT -> {
                 speechOutput = "That was not a valid answer. ${questionFactory.getQuestionText(counter, quizItem)}"
                 return input.responseBuilder
-                        .withSpeech(speechOutput)
-                        .withShouldEndSession(false)
-                        .build()
+                    .withSpeech(speechOutput)
+                    .withShouldEndSession(false)
+                    .build()
             }
         }
         responseText += getAnswerText(quizItem)
@@ -71,21 +72,20 @@ class AnswerIntentHandler(
 
     private fun getAnswerText(question: Question): String = "The correct answer is ${question.correct_answer}. "
 
-    private fun getSpeechCon(correct: Boolean): String {
-        return if (correct) {
+    private fun getSpeechCon(correct: Boolean): String =
+        if (correct) {
             "<say-as interpret-as='interjection'>" + Constants.CORRECT_RESPONSES.random() + "! </say-as><break strength='strong'/>"
         } else {
             "<say-as interpret-as='interjection'>" + Constants.INCORRECT_RESPONSES.random() + " </say-as><break strength='strong'/>"
         }
-    }
 
     private fun checkAnswer(slots: Map<String, Slot>, allAnswers: List<String>, correctAnswer: String): AnswerResult {
         val slotValues = slots.values.mapNotNull { it.value?.toLowerCase() }
-        val lowerCaseAnswers = allAnswers.map {it.toLowerCase()}
+        val lowerCaseAnswers = allAnswers.map { it.toLowerCase() }
         val match = slotValues.firstOrNull { it in lowerCaseAnswers }
 
         // Compare the first matching answer slot.
-        System.out.println("answer $slotValues $match $allAnswers $correctAnswer")
+        println("answer $slotValues $match $allAnswers $correctAnswer")
         return when (match) {
             correctAnswer.toLowerCase() -> AnswerResult.CORRECT
             null -> AnswerResult.REPROMPT

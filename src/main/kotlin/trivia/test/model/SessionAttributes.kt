@@ -49,7 +49,6 @@ class SessionAttributes(
     }
 
     fun setQuizItems(items: List<Question>) {
-        System.out.println("quiz items $items")
         attributesMap[QUIZ_ITEMS] = mapper.writeValueAsString(items)
     }
 
@@ -86,7 +85,7 @@ enum class QuizState(val attrName: String) {
 }
 
 object AttributeKeys {
-    const val STATE = "state" // State machine current state property key.
+    const val STATE = "state"
     const val QUIZ_ITEMS = "quizitems"
     const val QUIZ_SCORE = "quizscore"
     const val COUNTER = "counter"

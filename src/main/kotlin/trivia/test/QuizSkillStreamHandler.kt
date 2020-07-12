@@ -2,7 +2,14 @@ package trivia.test
 
 import com.amazon.ask.SkillStreamHandler
 import com.amazon.ask.Skills
-import trivia.test.handlers.*
+import trivia.test.handlers.AnswerIntentHandler
+import trivia.test.handlers.ExitSkillHandler
+import trivia.test.handlers.HelpIntentHandler
+import trivia.test.handlers.LaunchRequestHandler
+import trivia.test.handlers.QuizIntentHandler
+import trivia.test.handlers.RepeatIntentHandler
+import trivia.test.handlers.SessionEndedHandler
+import trivia.test.handlers.SkipQuestionIntentHandler
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -14,7 +21,8 @@ class QuizSkillStreamHandler @Inject constructor(
         Skills.standard()
                 .addRequestHandlers(
                         LaunchRequestHandler(),
-                        QuizHandlerIntent(attributesProvider, quizService),
+                        SkipQuestionIntentHandler(attributesProvider),
+                        QuizIntentHandler(attributesProvider, quizService),
                         RepeatIntentHandler(attributesProvider),
                         ExitSkillHandler(),
                         HelpIntentHandler(),

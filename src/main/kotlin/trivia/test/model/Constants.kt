@@ -8,8 +8,11 @@ object Constants {
 
     val USE_CARDS_FLAG = true
 
+
     val EXAMPLE_MESSAGE = "For example, say 'Start an easy sports quiz'."
-    var WELCOME_MESSAGE = "Welcome to the $APP_NAME game!  You can ask me for a random quiz in any of my categories."
+    val INFO_MESSAGE = "You can ask me for a quiz from a supported category, or say 'help' to hear a list. $EXAMPLE_MESSAGE"
+    val QUIZ_ERROR_MESSAGE = "Sorry I couldn't find a quiz for that. $INFO_MESSAGE"
+    var WELCOME_MESSAGE = "Welcome to the $APP_NAME game! $INFO_MESSAGE"
     // This is the message a user will hear when they try to cancel or stop the
 // skill, or when they finish a quiz.
     var EXIT_SKILL_MESSAGE = "Thank you for playing $APP_NAME!  Let's play again soon!"

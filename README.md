@@ -21,9 +21,8 @@ A new kind of trivia Alexa game built on Kotlin and powered by the <a href="http
 * Many Alexa quiz games exist but generally have:
 1. A fixed number of questions.
 2. Limited set of categories, or sometimes just one category, and don't leverage a dynamic question API.
-3. Don't give you control over the quiz category.
-4. Can be too long.
-5. Not open source.
+3. Doesn't give you the control over the quiz subject.
+4. Not open source.
 
 ### How to use
 

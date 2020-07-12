@@ -7,13 +7,12 @@ import com.amazon.ask.model.Response
 import com.amazon.ask.request.Predicates
 import trivia.test.SessionAttributesProvider
 import trivia.test.QuizService
-import trivia.test.model.Category
+import trivia.test.model.*
 import trivia.test.model.Constants.NUM_QUESTIONS
-import trivia.test.model.Difficulty
-import trivia.test.model.QuizState
-import trivia.test.model.SessionAttributes
+import trivia.test.model.Constants.QUIZ_ERROR_MESSAGE
 import trivia.test.util.QuestionFactory
 import trivia.test.util.notInQuiz
+import java.lang.Exception
 import java.util.Optional
 
 private const val QUIZ_INTENT = "QuizIntent"
@@ -46,12 +45,19 @@ class QuizHandlerIntent(
             else -> Difficulty.EASY
         }
         val apiCategory = Category.fromText(intentCategory)
+        if (apiCategory == null) {
+            val speech = QUIZ_ERROR_MESSAGE
+            return input.responseBuilder
+                    .withSpeech(speech)
+                    .withReprompt(speech)
+                    .withShouldEndSession(false)
+                    .build()
+        }
 
         val questionsResponse = quizService.getQuiz(
                 difficulty = apiDifficulty,
                 category = apiCategory,
-                amount=NUM_QUESTIONS
-        )
+                amount = NUM_QUESTIONS)
 
         sessionAttributes.setQuizItems(questionsResponse.results)
 

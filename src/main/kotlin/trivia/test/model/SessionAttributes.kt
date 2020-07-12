@@ -39,7 +39,7 @@ class SessionAttributes(
         get() = attributesMap[RESPONSE] as String? ?: ""
 
     val category: Category
-        get() = Category.fromText(attributesMap[CATEGORY] as String)
+        get() = Category.fromText(attributesMap[CATEGORY] as String)!!
 
     val difficulty: Difficulty
         get() = Difficulty.valueOf(attributesMap[DIFFICULTY] as String)

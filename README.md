@@ -68,6 +68,12 @@ cartoons
 Keep playing and improve your knowledge over time!
 
 
+### Language Model
+
+<p align="center">
+<img src='./img/language_model.png' width="800"/>
+</p>
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:

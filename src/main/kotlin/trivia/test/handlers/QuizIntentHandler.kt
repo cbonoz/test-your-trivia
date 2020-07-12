@@ -12,7 +12,6 @@ import trivia.test.model.Constants.NUM_QUESTIONS
 import trivia.test.model.Constants.QUIZ_ERROR_MESSAGE
 import trivia.test.util.QuestionFactory
 import trivia.test.util.notInQuiz
-import java.lang.Exception
 import java.util.Optional
 
 private const val QUIZ_INTENT = "QuizIntent"

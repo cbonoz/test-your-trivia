@@ -9,6 +9,7 @@ import com.amazon.ask.request.Predicates
 import trivia.test.SessionAttributesProvider
 import trivia.test.model.Constants
 import trivia.test.model.Constants.NUM_QUESTIONS
+import trivia.test.model.Constants.SKIP_PROMPT
 import trivia.test.model.Question
 import trivia.test.model.SessionAttributes
 import trivia.test.util.QuestionFactory
@@ -45,7 +46,7 @@ class AnswerIntentHandler(
                 responseText = getSpeechCon(correct = false)
             }
             AnswerResult.REPROMPT -> {
-                speechOutput = "That was not a valid answer. ${questionFactory.getQuestionText(counter, quizItem)}"
+                speechOutput = "That was not a valid answer. ${questionFactory.getOptionsText(quizItem)}. $SKIP_PROMPT"
                 return input.responseBuilder
                     .withSpeech(speechOutput)
                     .withShouldEndSession(false)

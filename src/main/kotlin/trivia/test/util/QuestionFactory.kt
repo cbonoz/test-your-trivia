@@ -31,6 +31,8 @@ class QuestionFactory(
                 .build()
     }
 
+    fun getOptionsText(item: Question): String = "Possible answers are ${item.allAnswers.joinToString(". ")}. "
+
     fun getQuestionText(counter: Int, item: Question): String =
-        "Here is question number $counter. ${item.question} Possible answers are ${item.allAnswers.joinToString(". ")}"
+        "Here is question number $counter. ${item.question} ${getOptionsText(item)}"
 }

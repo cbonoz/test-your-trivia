@@ -12,7 +12,7 @@ object Constants {
     // This is the message a user will hear when they try to cancel or stop the
 // skill, or when they finish a quiz.
 
-    val SKIP_PROMPT = "Or say, 'skip' to go to the next question. "
+    val SKIP_PROMPT = "Or say 'skip' to go to the next question. "
 
     val EXIT_SKILL_MESSAGE = "Thank you for playing $APP_NAME!  Let's play again soon!"
     val HELP_MESSAGE = "You can ask me for an easy, medium, or hard quiz in different categories. ${Category.allCategoriesText()}. $EXAMPLE_MESSAGE"

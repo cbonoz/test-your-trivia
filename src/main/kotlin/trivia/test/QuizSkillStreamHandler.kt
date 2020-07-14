@@ -7,7 +7,7 @@ import trivia.test.handlers.ExitSkillHandler
 import trivia.test.handlers.HelpIntentHandler
 import trivia.test.handlers.LaunchRequestHandler
 import trivia.test.handlers.QuizIntentHandler
-import trivia.test.handlers.RepeatIntentHandler
+import trivia.test.handlers.QuestionRepeatIntentHandler
 import trivia.test.handlers.SessionEndedHandler
 import trivia.test.handlers.SkipQuestionIntentHandler
 import javax.inject.Inject
@@ -23,7 +23,7 @@ class QuizSkillStreamHandler @Inject constructor(
                         LaunchRequestHandler(),
                         SkipQuestionIntentHandler(attributesProvider),
                         QuizIntentHandler(attributesProvider, quizService),
-                        RepeatIntentHandler(attributesProvider),
+                        QuestionRepeatIntentHandler(attributesProvider),
                         ExitSkillHandler(),
                         HelpIntentHandler(),
                         AnswerIntentHandler(attributesProvider),

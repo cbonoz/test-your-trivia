@@ -10,7 +10,7 @@ import trivia.test.util.QuestionFactory
 import trivia.test.util.inQuiz
 import java.util.Optional
 
-class RepeatIntentHandler(
+class QuestionRepeatIntentHandler(
     private val attributesProvider: SessionAttributesProvider
 ) : RequestHandler {
 

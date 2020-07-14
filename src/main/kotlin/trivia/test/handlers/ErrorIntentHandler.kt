@@ -10,12 +10,15 @@ import trivia.test.util.notInQuiz
 import java.util.Optional
 
 class ErrorIntentHandler : RequestHandler {
+    // Invoked in edge/error cases
     override fun canHandle(input: HandlerInput): Boolean =
-            input.matches(Predicates.intentName("SkipQuestionIntent").notInQuiz())
+            input.matches(Predicates.intentName("SkipQuestionIntent").notInQuiz()) ||
+            input.matches(Predicates.intentName("AnswerIntent").notInQuiz())
+
 
 
     override fun handle(input: HandlerInput): Optional<Response> {
-        val message = Constants.QUIZ_ERROR_MESSAGE
+        val message = Constants.GENERIC_ERROR_MESSAGE
         return input.responseBuilder
                 .withSpeech(message)
                 .withReprompt(message)

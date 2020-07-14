@@ -8,6 +8,7 @@ object Constants {
     val EXAMPLE_MESSAGE = "For example, say 'Start an easy sports quiz'. "
     val INFO_MESSAGE = "You can ask me for a quiz from one of my categories, or say 'help' to hear a list. "
     val QUIZ_ERROR_MESSAGE = "Sorry I couldn't find a quiz for that. $INFO_MESSAGE $EXAMPLE_MESSAGE"
+    val GENERIC_ERROR_MESSAGE = "Sorry I didn't get that. Try saying 'repeat', or say 'start over' to return to the main menu."
     val WELCOME_MESSAGE = "Welcome to the $APP_NAME game! $INFO_MESSAGE"
     // This is the message a user will hear when they try to cancel or stop the
 // skill, or when they finish a quiz.

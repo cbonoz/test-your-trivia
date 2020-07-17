@@ -8,7 +8,7 @@ import kotlin.random.Random
 object ResponseUtils {
 
     fun getStartQuizMessage(category: Category): String =
-        "OK.  I will ask you $NUM_QUESTIONS questions about ${category.text}. "
+        "OK. I will ask you $NUM_QUESTIONS questions about ${category.text}. "
 
     fun getExampleQuizMessage(): String {
         val difficulty = Difficulty.values()[Random.nextInt(0, Difficulty.values().size)]

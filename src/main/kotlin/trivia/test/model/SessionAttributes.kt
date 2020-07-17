@@ -2,6 +2,7 @@ package trivia.test.model
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import org.apache.commons.text.StringEscapeUtils
 import trivia.test.model.AttributeKeys.CATEGORY
 import trivia.test.model.AttributeKeys.COUNTER
 import trivia.test.model.AttributeKeys.DIFFICULTY
@@ -19,6 +20,7 @@ class SessionAttributes(
     private val attributesMap: MutableMap<String, Any>
 ) {
     private val mapper = jacksonObjectMapper()
+    private val HTML_REGEX = "&([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-f]{1,6});"
 
     val state: QuizState
         get() = when (attributesMap[STATE] as String) {
@@ -27,7 +29,7 @@ class SessionAttributes(
         }
 
     val quizItems: List<Question>
-        get() = mapper.readValue(attributesMap[QUIZ_ITEMS] as String)
+        get() = mapper.readValue((attributesMap[QUIZ_ITEMS] as String).replace(HTML_REGEX.toRegex(), ""))
 
     val score: Int
         get() = attributesMap[QUIZ_SCORE] as Int? ?: 0

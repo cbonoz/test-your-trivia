@@ -18,6 +18,8 @@ dependencies {
     implementation 'io.quarkus:quarkus-resteasy'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.11.1'
+    implementation 'org.apache.commons:commons-text:1.6'
+
 
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:kotlin-extensions'

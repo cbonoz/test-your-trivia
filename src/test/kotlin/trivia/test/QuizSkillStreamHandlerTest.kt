@@ -6,12 +6,14 @@ import com.amazon.ask.model.IntentRequest
 import com.amazon.ask.model.LaunchRequest
 import com.amazon.ask.model.RequestEnvelope
 import com.amazon.ask.model.Response
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.google.common.truth.Truth.assertThat
 import io.quarkus.test.junit.QuarkusTest
 import org.junit.jupiter.api.Test
 import trivia.test.handlers.LaunchRequestHandler
 import trivia.test.handlers.QuizIntentHandler
 import trivia.test.model.Category
+import trivia.test.model.Constants.NUM_QUESTIONS
 import trivia.test.model.QuizState
 import trivia.test.model.SessionAttributes
 import java.util.Optional
@@ -22,6 +24,7 @@ class QuizSkillStreamHandlerTest {
 
     private val attributesMap = mutableMapOf<String, Any>()
     private val sessionAttributes = SessionAttributes(attributesMap)
+    private val mapper = jacksonObjectMapper()
 
     @Inject
     lateinit var quizService: QuizService
@@ -74,7 +77,15 @@ class QuizSkillStreamHandlerTest {
 
         assertThat(sessionAttributes.state).isEqualTo(QuizState.IN_QUIZ)
         assertThat(sessionAttributes.category).isEqualTo(Category.GENERAL_KNOWLEDGE)
-        assertThat(sessionAttributes.quizItems).hasSize(10)
+        assertThat(sessionAttributes.quizItems).hasSize(NUM_QUESTIONS)
         assertThat(sessionAttributes.counter).isEqualTo(1)
+    }
+
+
+    @Test
+    fun `generate category intent list`() {
+        val categoryValues = Category.values().map { mapOf("name" to mapOf("value" to it.text))}
+        val categoryString = mapper.writeValueAsString(categoryValues)
+        print(categoryString)
     }
 }

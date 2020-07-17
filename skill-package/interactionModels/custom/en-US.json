@@ -109,7 +109,7 @@
         },
         {
           "name": "LIST_OF_CATEGORIES",
-          "values":[{"name": {"value": "Art"}}, {"name": {"value": "History"}}, {"name": {"value": "Politics"}}, {"name": {"value": "Celebrities"}}, {"name": {"value": "Animal"}}, {"name": {"value": "Vehicles"}}, {"name": {"value": "Geography"}}, {"name": {"value": "Sports"}}, {"name": {"value": "Mythology"}}, {"name": {"value": "General"}}]
+          "values":[{"name":{"value":"general knowledge"}},{"name":{"value":"books"}},{"name":{"value":"film"}},{"name":{"value":"music"}},{"name":{"value":"musicals"}},{"name":{"value":"television"}},{"name":{"value":"video games"}},{"name":{"value":"board games"}},{"name":{"value":"science"}},{"name":{"value":"computers"}},{"name":{"value":"math"}},{"name":{"value":"mythology"}},{"name":{"value":"sports"}},{"name":{"value":"geography"}},{"name":{"value":"history"}},{"name":{"value":"politics"}},{"name":{"value":"art"}},{"name":{"value":"celebrities"}},{"name":{"value":"animals"}},{"name":{"value":"vehicles"}},{"name":{"value":"comics"}},{"name":{"value":"gadgets"}},{"name":{"value":"anime"}},{"name":{"value":"cartoons"}}]
         },
         {
           "name": "LIST_OF_EXAMPLE_ANSWERS",

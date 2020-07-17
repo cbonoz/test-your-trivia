@@ -26,16 +26,11 @@ class QuizIntentHandler(
     override fun canHandle(input: HandlerInput): Boolean = input.matches(Predicates.intentName(QUIZ_INTENT).notInQuiz())
 
     override fun handle(input: HandlerInput): Optional<Response> {
-        val sessionAttributes = SessionAttributes(attributesProvider.get(input))
         val intentRequest = input.requestEnvelope.request as IntentRequest
-
-        sessionAttributes.setState(QuizState.IN_QUIZ)
 
         val intentDifficulty = intentRequest.intent.slots["difficulty"]?.value ?: Difficulty.EASY.name
         val intentCategory = intentRequest.intent.slots["category"]?.value ?: Category.GENERAL_KNOWLEDGE.text
 
-        sessionAttributes.setDifficulty(intentDifficulty)
-        sessionAttributes.setCategory(intentCategory)
 
         val apiDifficulty = when (intentDifficulty) {
             "easy" -> Difficulty.EASY
@@ -52,6 +47,11 @@ class QuizIntentHandler(
                     .withShouldEndSession(false)
                     .build()
         }
+
+        val sessionAttributes = SessionAttributes(attributesProvider.get(input))
+        sessionAttributes.setDifficulty(intentDifficulty)
+        sessionAttributes.setCategory(intentCategory)
+        sessionAttributes.setState(QuizState.IN_QUIZ)
 
         val questionsResponse = quizService.getQuiz(
             difficulty = apiDifficulty,

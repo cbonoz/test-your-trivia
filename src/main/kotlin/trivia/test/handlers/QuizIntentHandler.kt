@@ -48,17 +48,16 @@ class QuizIntentHandler(
                     .build()
         }
 
-        val sessionAttributes = SessionAttributes(attributesProvider.get(input))
-        sessionAttributes.setDifficulty(intentDifficulty)
-        sessionAttributes.setCategory(intentCategory)
-        sessionAttributes.setState(QuizState.IN_QUIZ)
-
         val questionsResponse = quizService.getQuiz(
             difficulty = apiDifficulty,
             category = apiCategory,
             amount = NUM_QUESTIONS
         )
 
+        val sessionAttributes = SessionAttributes(attributesProvider.get(input))
+        sessionAttributes.setDifficulty(intentDifficulty)
+        sessionAttributes.setCategory(intentCategory)
+        sessionAttributes.setState(QuizState.IN_QUIZ)
         sessionAttributes.setQuizItems(questionsResponse.results)
 
         return questionFactory.generateQuestion(input)
